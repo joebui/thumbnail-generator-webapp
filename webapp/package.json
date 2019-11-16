@@ -33,8 +33,6 @@
     "react-redux": "^5.0.6",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
-    "react-scroll-up-button": "^1.6.4",
-    "react-simplemde-editor": "^3.6.22",
     "reactstrap": "^8.0.1",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
