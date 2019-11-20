@@ -1,0 +1,18 @@
+{
+  "Version": "2008-10-17",
+  "Id": "PolicyForCloudFrontPrivateContent",
+  "Statement": [
+    {
+      "Sid": "1",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::web.dientesting.de/*",
+      "Condition": {
+        "StringLike": {
+          "aws:Referer": "6B4481092F450D9E8190BD68ABC5CE90E5EAD9D9F58498DA809B531C1A5C09F6"
+        }
+      }
+    }
+  ]
+}
