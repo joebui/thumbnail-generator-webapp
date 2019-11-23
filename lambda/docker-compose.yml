@@ -1,0 +1,8 @@
+version: '3'
+services:
+  lambda:
+    command: 'sleep infinity'
+    image: thumb-amazonlinux
+    volumes:
+      - .:/app
+    container_name: thumbnail_gen
