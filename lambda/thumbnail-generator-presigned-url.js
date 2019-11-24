@@ -7,7 +7,7 @@ module.exports.getPreSignedUrl = async event => {
     s3.getSignedUrl(
       'putObject',
       {
-        Bucket: '',
+        Bucket: 'dientesting-file-upload',
         ContentType: event.queryStringParameters.type,
         Key: event.queryStringParameters.key,
       },
