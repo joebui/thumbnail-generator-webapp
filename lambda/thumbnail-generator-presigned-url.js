@@ -2,7 +2,7 @@ const AWS = require('aws-sdk');
 
 const s3 = new AWS.S3();
 
-module.exports.getPreSignedUrl = async event => {
+module.exports.handler = async event => {
   const url = await new Promise((resolve, reject) => {
     s3.getSignedUrl(
       'putObject',
