@@ -25,8 +25,10 @@ class Home extends Component {
     const file = e.target.files[0];
 
     const { data } = await axios.get(process.env.PRESIGNED_URL_ENDPOINT, {
-      type: file.type,
-      key: `${uuid()}.${mime.extension(file.type)}}`,
+      params: {
+        type: file.type,
+        key: `${uuid()}.${mime.extension(file.type)}}`,
+      },
     });
     await axios.put(data.url, file, {
       headers: {
@@ -53,8 +55,12 @@ class Home extends Component {
           <tbody>
             {items.map((v, k) => (
               <tr>
-                <td>{v.name}</td>
-                <td>{v.thumbnail}</td>
+                <td>
+                  <img src={v.name} alt='' style={{ maxWidth: 100 }} />
+                </td>
+                <td>
+                  <img src={v.thumbnail} alt='' />
+                </td>
               </tr>
             ))}
           </tbody>
