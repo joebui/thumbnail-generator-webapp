@@ -71,9 +71,8 @@ const config = {
 
   plugins: [
     new webpack.EnvironmentPlugin({
-      NODE_ENV: NODE_ENV || 'development',
-      GRAPHQL_ENDPOINT: process.env.GRAPHQL_ENDPOINT || 'http://localhost:5000/graphql',
-      REST_ENDPOINT: process.env.REST_ENDPOINT || 'http://localhost:5000',
+      PRESIGNED_URL_ENDPOINT: 'https://api.dientesting.de/dientesting/prod/presigned-url',
+      ALL_IMAGES_ENDPOINT: 'https://api.dientesting.de/dientesting/prod/images',
     }),
     new MiniCssExtractPlugin({
       filename: NODE_ENV === 'development' ? 'index.css' : 'index-[contenthash].css',
