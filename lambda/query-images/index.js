@@ -10,6 +10,9 @@ exports.handler = async event => {
   const data = await docClient.scan(params).promise();
   return {
     statusCode: 200,
+    headers: {
+      'Access-Control-Allow-Origin': 'https://web.dientesting.de',
+    },
     body: JSON.stringify(
       {
         data: data.Items.map(({ name, thumbnail }) => ({
