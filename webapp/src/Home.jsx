@@ -56,7 +56,7 @@ class Home extends Component {
             {items.map((v, k) => (
               <tr>
                 <td>
-                  <img src={v.name} alt='' style={{ maxWidth: 100 }} />
+                  <img src={v.name} alt='' style={{ maxWidth: 500 }} />
                 </td>
                 <td>
                   <img src={v.thumbnail} alt='' />
