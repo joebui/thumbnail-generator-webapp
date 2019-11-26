@@ -27,7 +27,7 @@ class Home extends Component {
     const { data } = await axios.get(process.env.PRESIGNED_URL_ENDPOINT, {
       params: {
         type: file.type,
-        key: `${uuid()}.${mime.extension(file.type)}}`,
+        key: `${uuid()}.${mime.extension(file.type)}`,
       },
     });
     await axios.put(data.url, file, {
