@@ -1,16 +1,14 @@
+const mime = require('mime-types');
+
 exports.handler = (event, context, callback) => {
   const response = event.Records[0].cf.response;
   const requestUri = event.Records[0].cf.request.uri;
 
   try {
     if (requestUri.endsWith('.br')) {
-      // decode using brotli algorithm.
-      addContentEncoding('br', response);
-    } else {
-      if (requestUri.endsWith('.gz')) {
-        // decode using gzip algorithm.
-        addContentEncoding('gzip', response);
-      }
+      addContentHeaders('br', response, requestUri, '.br');
+    } else if (requestUri.endsWith('.gz')) {
+      addContentHeaders('gzip', response, requestUri, '.gz');
     }
   } catch (e) {
     console.log(`Error occurred with with ${requestUri}: ${JSON.stringify(e)}`);
@@ -19,12 +17,17 @@ exports.handler = (event, context, callback) => {
   }
 };
 
-function addContentEncoding(value, response) {
-  // add headers.
+function addContentHeaders(value, response, requestUri, ext) {
   response.headers['content-encoding'] = [
     {
       key: 'Content-Encoding',
       value,
+    },
+  ];
+  response.headers['content-type'] = [
+    {
+      key: 'Content-Type',
+      value: mime.lookup(requestUri.replace(ext, '')),
     },
   ];
 }
