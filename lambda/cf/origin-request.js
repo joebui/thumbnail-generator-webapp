@@ -8,9 +8,14 @@ exports.handler = async event => {
     if (request.uri && request.headers['accept-encoding']) {
       const acceptEncoding = request.headers['accept-encoding'][0].value;
 
-      // Check gzip support.
-      if (acceptEncoding.includes('gzip')) {
-        await applyPrecompressedAsset('gz', request);
+      // Check br support.
+      if (acceptEncoding.includes('br')) {
+        await applyPrecompressedAsset('br', request);
+      } else {
+        // Check gzip support.
+        if (acceptEncoding.includes('gzip')) {
+          await applyPrecompressedAsset('gz', request);
+        }
       }
     }
   } catch (e) {

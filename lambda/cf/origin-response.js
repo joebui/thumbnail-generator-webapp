@@ -3,8 +3,14 @@ exports.handler = (event, context, callback) => {
   const requestUri = event.Records[0].cf.request.uri;
 
   try {
-    if (requestUri.endsWith('.gz')) {
-      addContentEncoding('gzip', response);
+    if (requestUri.endsWith('.br')) {
+      // decode using brotli algorithm.
+      addContentEncoding('br', response);
+    } else {
+      if (requestUri.endsWith('.gz')) {
+        // decode using gzip algorithm.
+        addContentEncoding('gzip', response);
+      }
     }
   } catch (e) {
     console.log(`Error occurred with with ${requestUri}: ${JSON.stringify(e)}`);
